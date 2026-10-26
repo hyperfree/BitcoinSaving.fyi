@@ -14,6 +14,7 @@ const frequencies: Array<{ value: Frequency; label: string }> = [
   { value: "hourly", label: "Hourly" },
   { value: "daily", label: "Daily" },
   { value: "weekly", label: "Weekly" },
+  { value: "biweekly", label: "Bi-weekly" },
   { value: "monthly", label: "Monthly" },
 ];
 

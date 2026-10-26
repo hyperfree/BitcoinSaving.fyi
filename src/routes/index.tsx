@@ -21,6 +21,7 @@ const frequencies: Array<{ value: Frequency; label: string }> = [
   { value: "hourly", label: "Hourly" },
   { value: "daily", label: "Daily" },
   { value: "weekly", label: "Weekly" },
+  { value: "biweekly", label: "Bi-weekly" },
   { value: "monthly", label: "Monthly" },
 ];
 
@@ -176,38 +177,10 @@ function Index() {
           />
 
           <div className="mt-[26px] grid grid-cols-1 items-start gap-[26px] sm:grid-cols-2 sm:gap-10">
-            <fieldset className="min-w-0">
-              <legend className="step-title">
-                <span className="section-number">2</span>
-                Frequency
-              </legend>
-              <div className="segmented-control">
-                <span
-                  aria-hidden="true"
-                  className="segment-thumb"
-                  style={{ transform: `translateX(${Math.max(0, frequencies.findIndex((item) => item.value === frequency)) * 100}%)` }}
-                />
-                {frequencies.map((item) => (
-                  <button
-                    key={item.value}
-                    type="button"
-                    aria-pressed={frequency === item.value}
-                    onClick={() => {
-                      setFrequency(item.value);
-                      if (typeof navigator !== "undefined" && "vibrate" in navigator) navigator.vibrate(6);
-                    }}
-                    className={cn("segment", frequency === item.value && "segment-active")}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </fieldset>
+            <div className="min-w-0">
+              <FrequencyWheel value={frequency} onChange={setFrequency} />
+            </div>
             <div className="flex min-w-0 flex-col items-stretch">
-              <p className="step-title">
-                <span className="section-number">3</span>
-                <span>Starting Year</span>
-              </p>
               <YearWheel value={startYear} onChange={setStartYear} />
             </div>
           </div>

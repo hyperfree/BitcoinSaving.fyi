@@ -46,7 +46,7 @@ export function ResultsPanel({ result, amount, frequency, startYear }: { result:
         </p>
       </div>
 
-      <dl className="relative mt-7 grid grid-cols-2 gap-x-5 gap-y-5 sm:mt-14 sm:grid-cols-4 sm:pr-24 md:pr-48 lg:pr-56">
+      <dl className="relative mt-7 grid grid-cols-2 gap-x-5 gap-y-5 sm:mt-14 sm:grid-cols-5 sm:pr-24 md:pr-48 lg:pr-56">
         <Metric label="Bitcoin" value={`${btc.format(result.bitcoin)} BTC`} detail={`${compact.format(result.satoshis)} sats`} />
         <Metric label="Total invested" value={usd.format(result.totalInvested)} detail={`${integer.format(result.purchaseCount)} buys`} />
         <div className="min-w-0">
@@ -60,6 +60,7 @@ export function ResultsPanel({ result, amount, frequency, startYear }: { result:
           </p>
         </div>
         <Metric label="Average cost" value={usd.format(result.averageCost)} detail="per bitcoin" />
+        <Metric label="ROI" value={`${positive ? "+" : ""}${result.roi.toLocaleString("en-US", { maximumFractionDigits: 0 })}%`} detail="return on investment" />
       </dl>
     </section>
   );
