@@ -1,0 +1,443 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-sans: var(--font-system);
+  --font-display: var(--font-heading);
+  --font-numeral: var(--font-serif-numeral);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-control: 14px;
+  --radius-control-inner: 10px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-surface: var(--surface);
+  --color-bitcoin: var(--bitcoin);
+  --color-bitcoin-foreground: var(--bitcoin-foreground);
+  --color-gain: var(--gain);
+  --color-loss: var(--loss);
+  --color-footer-link: var(--footer-link);
+  --color-result: var(--result);
+  --color-result-foreground: var(--result-foreground);
+  --color-result-muted: var(--result-muted);
+  --color-result-border: var(--result-border);
+  --color-result-skeleton: var(--result-skeleton);
+  --color-chart-portfolio: var(--chart-portfolio);
+  --color-chart-invested: var(--chart-invested);
+  --shadow-hairline: var(--shadow-hairline);
+  --shadow-float: var(--shadow-float);
+  --shadow-bitcoin: var(--shadow-bitcoin);
+  --color-step: var(--step);
+  --color-step-foreground: var(--step-foreground);
+}
+
+:root {
+  --font-system: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-heading: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-serif-numeral: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --radius: 0.75rem;
+  --background: oklch(0.972 0.003 250);
+  --banknote-background: oklch(0.974 0.004 90);
+  --banknote-border: oklch(0.89 0.009 255);
+  --banknote-surface: oklch(1 0 0 / 82%);
+  --step: oklch(0.92 0.045 235);
+  --step-foreground: oklch(0.42 0.11 255);
+  --foreground: oklch(0.18 0.012 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.72 0.18 55);
+  --primary-foreground: oklch(0.18 0.012 265);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.49 0.018 260);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.93 0.005 255);
+  --input: oklch(0.9 0.006 255);
+  --ring: oklch(0.72 0.18 55);
+  --surface: oklch(1 0 0);
+  --bitcoin: oklch(0.72 0.18 55);
+  --bitcoin-foreground: oklch(0.17 0.02 55);
+  --gain: oklch(0.61 0.15 153);
+  --loss: oklch(0.61 0.21 25);
+  --footer-link: oklch(0.62 0.014 80);
+  --result: oklch(0.31 0.09 155);
+  --result-foreground: oklch(0.985 0.002 90);
+  --result-muted: oklch(0.88 0.035 155);
+  --result-border: oklch(0.93 0.06 155 / 19%);
+  --result-skeleton: oklch(0.94 0.05 155 / 13%);
+  --result-glow-1: oklch(0.44 0.12 162 / 42%);
+  --result-glow-2: oklch(0.42 0.1 196 / 34%);
+  --result-glow-3: oklch(0.52 0.11 90 / 16%);
+  --result-gain: oklch(0.83 0.12 155);
+  --result-loss: oklch(0.8 0.13 30);
+
+
+
+  --chart-portfolio: oklch(0.7 0.18 52);
+  --chart-invested: oklch(0.5 0.03 255);
+  --compare-1: oklch(0.72 0.14 90);
+  --compare-2: oklch(0.55 0.17 255);
+  --compare-3: oklch(0.6 0.17 140);
+  --compare-4: oklch(0.55 0.2 300);
+  --compare-5: oklch(0.6 0.2 20);
+  --shadow-hairline: 0 1px 2px oklch(0.2 0.02 260 / 3%);
+  --shadow-float: 0 12px 36px oklch(0.2 0.02 260 / 6%), 0 1px 4px oklch(0.2 0.02 260 / 3%);
+  --shadow-bitcoin: 0 8px 18px oklch(0.72 0.18 55 / 28%);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.17 0.004 265);
+  --foreground: oklch(0.96 0.002 260);
+  --card: oklch(0.22 0.005 265);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.27 0.006 265);
+  --popover-foreground: var(--foreground);
+  --primary: var(--bitcoin);
+  --primary-foreground: var(--bitcoin-foreground);
+  --secondary: oklch(0.25 0.004 260);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.27 0.006 265);
+  --muted-foreground: oklch(0.73 0.008 260);
+  --accent: oklch(0.29 0.006 260);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 20%);
+  --ring: var(--bitcoin);
+  --surface: oklch(0.22 0.005 265);
+  --gain: oklch(0.77 0.16 153);
+  --loss: oklch(0.75 0.17 25);
+  --footer-link: oklch(0.72 0.008 80);
+  --result: oklch(0.29 0.075 155);
+  --result-muted: oklch(0.88 0.03 155);
+  --result-glow-1: oklch(0.4 0.13 168 / 40%);
+  --result-glow-2: oklch(0.38 0.11 200 / 30%);
+  --result-glow-3: oklch(0.48 0.11 85 / 16%);
+  --result-gain: oklch(0.84 0.13 155);
+  --result-loss: oklch(0.8 0.15 30);
+
+
+
+  --chart-portfolio: oklch(0.78 0.16 60);
+  --chart-invested: oklch(0.7 0.012 260);
+  --compare-1: oklch(0.83 0.14 90);
+  --compare-2: oklch(0.74 0.13 245);
+  --compare-3: oklch(0.77 0.16 140);
+  --compare-4: oklch(0.77 0.14 300);
+  --compare-5: oklch(0.76 0.17 20);
+  --step: oklch(0.3 0.06 245);
+  --step-foreground: oklch(0.84 0.07 235);
+  --shadow-hairline: 0 1px 2px oklch(0 0 0 / 20%);
+  --shadow-float: 0 18px 50px oklch(0 0 0 / 25%);
+  --shadow-bitcoin: 0 4px 14px oklch(0.72 0.18 55 / 12%);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-system);
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+  }
+
+  button, input { touch-action: manipulation; }
+  button { -webkit-tap-highlight-color: transparent; }
+}
+
+@utility control-surface {
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: var(--surface);
+  box-shadow: var(--shadow-float);
+  padding: 1rem;
+  backdrop-filter: blur(22px) saturate(140%);
+  @media (width >= 640px) { padding: 1.5rem; }
+}
+
+@utility amount-card {
+  position: relative;
+  display: flex;
+  min-height: 7.75rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.875rem;
+  background: var(--background);
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  &:hover { border-color: color-mix(in oklab, var(--foreground) 22%, var(--border)); }
+  &:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+}
+
+@utility amount-card-selected {
+  border-color: color-mix(in oklab, var(--foreground) 28%, var(--border));
+  background: var(--surface);
+  box-shadow: 0 4px 14px -6px oklch(0 0 0 / 22%);
+}
+
+@utility banknote-card {
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  @media (width >= 640px) { min-height: 6.5rem; aspect-ratio: auto; }
+}
+
+/* Keep banknote surfaces independent from the surrounding page theme. */
+.banknote-card {
+  --background: var(--banknote-background);
+  --border: var(--banknote-border);
+  --surface: var(--banknote-surface);
+}
+
+.dark .banknote-card {
+  --background: oklch(0.19 0.004 260);
+  --border: oklch(1 0 0 / 20%);
+  --surface: oklch(0.19 0.004 260);
+}
+
+/* The custom amount card reads as a grey field, not the black page. */
+.dark .amount-custom {
+  background: var(--card);
+}
+
+@utility amount-custom {
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  justify-content: center;
+  padding-top: 0.5rem;
+  @media (width >= 640px) { min-height: 6.5rem; aspect-ratio: auto; padding-top: 0; }
+}
+@utility amount-label {
+  position: absolute;
+  z-index: 2;
+  right: 0.55rem;
+  bottom: 0.5rem;
+  border-radius: 0.5rem;
+  background: color-mix(in oklab, var(--surface) 90%, transparent);
+  padding: 0.2rem 0.45rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--foreground);
+  box-shadow: var(--shadow-hairline);
+  backdrop-filter: blur(8px);
+}
+
+@utility bill-art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  background: var(--background);
+}
+@utility bill-image {
+  width: 175%;
+  max-width: none;
+  height: 100%;
+  margin-right: auto;
+  object-fit: cover;
+  object-position: left top;
+  filter: grayscale(0.85) brightness(1.35) contrast(0.35) saturate(0.35);
+  opacity: 0.5;
+  transition: filter 180ms ease, opacity 180ms ease;
+}
+.amount-card .bill-image-5 { filter: grayscale(0.85) brightness(1.35) contrast(0.35) sepia(0.08) saturate(0.35); }
+.amount-card .bill-image-20 { filter: grayscale(0.8) brightness(1.35) contrast(0.35) sepia(0.14) saturate(0.4); }
+.amount-card .bill-image-50 { filter: grayscale(0.82) brightness(1.35) contrast(0.35) sepia(0.22) saturate(0.45); }
+.dark .banknote-card:not(.amount-card-selected):not(:hover) .bill-image {
+  filter: grayscale(0.85) brightness(0.65) contrast(0.65) saturate(0.35);
+  opacity: 0.55;
+}
+.amount-card:hover .bill-image,
+.amount-card-selected .bill-image {
+  filter: grayscale(0) brightness(1.04) contrast(1.08) saturate(1.16); opacity: 1;
+}
+
+@utility section-number {
+  display: inline-flex; width: 1.5rem; height: 1.5rem; flex: 0 0 1.5rem;
+  align-items: center; justify-content: center; border-radius: 9999px;
+  background: var(--step); color: var(--step-foreground);
+  font-size: 0.875rem; line-height: 1; font-weight: 700;
+}
+@utility step-title { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.01em; font-weight: 600; color: var(--foreground); white-space: nowrap; }
+
+@utility segmented-control {
+  position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  height: 48px; border-radius: 14px; background: var(--muted); padding: 4px;
+}
+@utility segment-thumb {
+  position: absolute; top: 4px; left: 4px; height: 40px; width: calc((100% - 8px) / 4);
+  border-radius: 10px; background: var(--surface); box-shadow: inset 0 1px 0 oklch(1 0 0 / 6%), 0 1px 3px oklch(0.2 0.02 260 / 13%);
+  pointer-events: none; transition: transform 280ms cubic-bezier(0.32, 0.72, 0, 1);
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+@utility segment {
+  position: relative; z-index: 1; min-width: 0; height: 40px; border-radius: 10px; padding-inline: 2px;
+  font-size: 14px; line-height: 1; font-weight: 400; color: var(--muted-foreground); cursor: pointer;
+  transition: color 160ms ease;
+  &:focus-visible { outline: 2px solid var(--ring); outline-offset: 1px; }
+}
+@utility segment-active { color: var(--foreground); font-weight: 600; }
+
+@utility year-wheel-shell { position: relative; width: 100%; min-width: 0; height: 48px; overflow: hidden; border-radius: 14px; background: var(--muted); }
+@utility year-wheel-highlight { position: absolute; z-index: 0; top: 4px; left: 50%; width: 80px; height: 40px; transform: translateX(-50%); pointer-events: none; border-radius: 10px; background: var(--surface); box-shadow: inset 0 1px 0 oklch(1 0 0 / 6%), 0 1px 3px oklch(0.2 0.02 260 / 13%); }
+@utility year-wheel {
+  position: relative; z-index: 2; display: flex; width: 100%; height: 48px;
+  overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none;
+  mask-image: linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%);
+  &::-webkit-scrollbar { display: none; }
+  &:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; border-radius: 14px; }
+}
+@utility year-wheel-spacer { width: calc(50% - 40px); flex: 0 0 calc(50% - 40px); }
+@utility year-option { position: relative; z-index: 1; width: 80px; height: 48px; flex: 0 0 80px; scroll-snap-align: center; font-size: 14px; line-height: 1; font-weight: 400; color: var(--muted-foreground); cursor: pointer; transition: color 150ms ease; }
+@utility year-option-adjacent { font-weight: 500; }
+@utility year-option-active { color: var(--foreground); font-weight: 600; }
+
+@utility result-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  --gain: var(--result-gain);
+  --loss: var(--result-loss);
+  background: linear-gradient(180deg, oklch(1 0 0 / 5%), transparent 42%), var(--result);
+
+  padding: 1.5rem;
+  box-shadow: var(--shadow-float);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -35%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(70% 80% at 18% 24%, var(--result-glow-1), transparent 78%),
+      radial-gradient(64% 74% at 74% 16%, var(--result-glow-2), transparent 80%),
+      radial-gradient(78% 86% at 42% 96%, var(--result-glow-3), transparent 82%);
+
+    animation: result-drift 28s ease-in-out infinite;
+    will-change: transform;
+  }
+  @media (width >= 640px) { padding: 2rem; }
+}
+
+@utility chart-section { border: 1px solid var(--border); border-radius: 1.25rem; background: var(--surface); padding: 1rem 0.75rem 1rem 1rem; box-shadow: var(--shadow-hairline); @media (width >= 640px) { padding: 1.5rem 1.25rem 1.25rem 1.5rem; } }
+@utility chart-tooltip { min-width: 12rem; border: 1px solid var(--border); border-radius: 0.75rem; background: var(--surface); padding: 0.75rem; box-shadow: var(--shadow-float); backdrop-filter: blur(18px); }
+@utility error-panel { display: flex; min-height: 10rem; align-items: center; gap: 1rem; border: 1px solid var(--border); border-radius: 1.25rem; background: var(--surface); padding: 1.25rem; box-shadow: var(--shadow-hairline); }
+@utility footer-link {
+  color: var(--footer-link);
+  transition: color 150ms ease;
+  &:hover { color: var(--foreground); text-decoration: underline; }
+  &:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 2px; }
+}
+
+@keyframes result-drift {
+  0%, 100% { transform: translate3d(-5%, -3%, 0) scale(1.04); }
+  33% { transform: translate3d(6%, 4%, 0) scale(1.12); }
+  66% { transform: translate3d(-2%, 6%, 0) scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
