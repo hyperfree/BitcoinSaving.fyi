@@ -1,4 +1,4 @@
-export type Frequency = "hourly" | "daily" | "weekly" | "monthly";
+export type Frequency = "hourly" | "daily" | "weekly" | "biweekly" | "monthly";
 
 export type PricePoint = {
   timestamp: number;
@@ -28,11 +28,12 @@ export type CalculationResult = {
 
 const DAY = 86_400_000;
 
-function isPurchaseDay(point: PricePoint, index: number, frequency: Frequency) {
+function isPurchaseDay(point: PricePoint, index: number, frequency: Frequency, lastPurchase?: number) {
   if (frequency === "daily" || frequency === "hourly") return true;
   if (index === 0) return true;
   const date = new Date(point.timestamp);
   if (frequency === "weekly") return date.getUTCDay() === 1;
+  if (frequency === "biweekly") return date.getUTCDay() === 1 && (lastPurchase === undefined || point.timestamp - lastPurchase >= 13 * DAY);
   return date.getUTCDate() === 1;
 }
 
@@ -75,9 +76,11 @@ export function calculateDca(
   let bitcoin = 0;
   let purchaseCount = 0;
   const chart: ChartPoint[] = [];
+  let lastPurchase: number | undefined;
 
   eligible.forEach((point, index) => {
-    if (isPurchaseDay(point, index, frequency)) {
+    if (isPurchaseDay(point, index, frequency, lastPurchase)) {
+      lastPurchase = point.timestamp;
       const purchases = frequency === "hourly" ? 24 : 1;
       const dailyInvestment = validAmount * purchases;
       invested += dailyInvestment;

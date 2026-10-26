@@ -380,7 +380,7 @@
 @utility segment-active { color: var(--foreground); font-weight: 600; }
 
 @utility year-wheel-shell { position: relative; width: 100%; min-width: 0; height: 48px; overflow: hidden; border-radius: 14px; background: var(--muted); }
-@utility year-wheel-highlight { position: absolute; z-index: 0; top: 4px; left: 50%; width: 80px; height: 40px; transform: translateX(-50%); pointer-events: none; border-radius: 10px; background: var(--surface); box-shadow: inset 0 1px 0 oklch(1 0 0 / 6%), 0 1px 3px oklch(0.2 0.02 260 / 13%); }
+@utility year-wheel-highlight { position: absolute; z-index: 0; top: 4px; left: 50%; width: 80px; height: 40px; transform: translateX(-50%); pointer-events: none; border-radius: 10px; background: color-mix(in oklab, var(--bitcoin) 16%, transparent); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--bitcoin) 30%, transparent); }
 @utility year-wheel {
   position: relative; z-index: 2; display: flex; width: 100%; height: 48px;
   overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none;
@@ -391,7 +391,7 @@
 @utility year-wheel-spacer { width: calc(50% - 40px); flex: 0 0 calc(50% - 40px); }
 @utility year-option { position: relative; z-index: 1; width: 80px; height: 48px; flex: 0 0 80px; scroll-snap-align: center; font-size: 14px; line-height: 1; font-weight: 400; color: var(--muted-foreground); cursor: pointer; transition: color 150ms ease; }
 @utility year-option-adjacent { font-weight: 500; }
-@utility year-option-active { color: var(--foreground); font-weight: 600; }
+@utility year-option-active { color: var(--bitcoin); font-weight: 600; }
 
 @utility result-panel {
   position: relative;

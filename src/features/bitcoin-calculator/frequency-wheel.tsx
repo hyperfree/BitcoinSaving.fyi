@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Frequency } from "./calculator";
 
@@ -7,6 +6,7 @@ const FREQUENCIES: Array<{ value: Frequency; label: string }> = [
   { value: "hourly", label: "Hourly" },
   { value: "daily", label: "Daily" },
   { value: "weekly", label: "Weekly" },
+  { value: "biweekly", label: "Bi-weekly" },
   { value: "monthly", label: "Monthly" },
 ];
 
@@ -44,8 +44,8 @@ export function FrequencyWheel({ value, onChange }: FrequencyWheelProps) {
   };
 
   return (
-    <div className="frequency-wheel-shell sm:hidden">
-      <div className="frequency-wheel-highlight" aria-hidden="true" />
+    <div className="year-wheel-shell">
+      <div className="year-wheel-highlight" aria-hidden="true" />
       <div
         ref={scroller}
         role="listbox"
@@ -77,24 +77,23 @@ export function FrequencyWheel({ value, onChange }: FrequencyWheelProps) {
             if (closest !== value) choose(closest);
           }, 80);
         }}
-        className="frequency-wheel"
+        className="year-wheel"
       >
-        <div className="frequency-wheel-spacer" />
+        <div className="year-wheel-spacer" />
         {FREQUENCIES.map((item) => (
-          <Button
+          <button
             key={item.value}
             type="button"
-            variant="ghost"
             role="option"
             aria-selected={item.value === value}
             data-frequency={item.value}
             onClick={() => choose(item.value)}
-            className={cn("frequency-option", item.value === value && "frequency-option-active")}
+            className={cn("year-option", item.value === value && "year-option-active")}
           >
             {item.label}
-          </Button>
+          </button>
         ))}
-        <div className="frequency-wheel-spacer" />
+        <div className="year-wheel-spacer" />
       </div>
     </div>
   );

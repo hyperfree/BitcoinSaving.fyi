@@ -39,10 +39,7 @@ export function AmountSelector({ value, custom, onChange }: AmountSelectorProps)
 
   return (
     <fieldset>
-      <legend className="step-title">
-        <span className="section-number">1</span>
-        Regular amount
-      </legend>
+      <legend className="sr-only">Regular amount</legend>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
         {PRESETS.map(({ amount, image }) => {
           const selected = !custom && value === amount;
