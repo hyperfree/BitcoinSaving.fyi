@@ -1,4 +1,5 @@
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import type { ReactNode } from "react";
 import type { CalculationResult } from "./calculator";
 import type { Frequency } from "./calculator";
 
@@ -11,7 +12,7 @@ const btc = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFr
 const integer = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 const compact = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 2 });
 
-function Stat({ label, children }: { label: string; children: React.ReactNode }) {
+function Stat({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="min-w-0">
       <dt className="truncate text-[10px] font-medium uppercase tracking-[0.18em] text-result-muted">{label}</dt>
