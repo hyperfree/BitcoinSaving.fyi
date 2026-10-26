@@ -61,7 +61,7 @@ export function ResultsPanel({ result, amount, frequency, startYear }: { result:
             <span className="truncate">{usd.format(result.netProfit)}</span>
             <span className="result-pill font-sans">{roi}</span>
           </Stat>
-          <Stat label="Total invested">
+          <Stat label="Invested">
             <span className="truncate">{usd.format(result.totalInvested)}</span>
           </Stat>
           <Stat label="Avg cost">
