@@ -16,7 +16,7 @@ function Stat({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="min-w-0">
       <dt className="truncate text-[10px] font-medium uppercase tracking-[0.18em] text-result-muted">{label}</dt>
-      <dd className="mt-1 flex flex-wrap items-center gap-1.5 font-numeral text-[clamp(20px,5.8vw,27px)] tabular-nums text-result-foreground">{children}</dd>
+      <dd className="mt-1 flex flex-nowrap items-center gap-1.5 font-numeral text-[clamp(20px,5.8vw,27px)] tabular-nums text-result-foreground">{children}</dd>
     </div>
   );
 }
@@ -31,7 +31,7 @@ function Ornament() {
           <circle cx="190" cy="190" r="95" strokeOpacity="0.2" />
         </g>
       </svg>
-      <img src="/bitcoin-b.svg" alt="" className="absolute -right-4 top-1/2 size-20 -translate-y-1/2 opacity-90 sm:right-2 sm:size-28" />
+      <img src="/bitcoin-b.svg" alt="" className="absolute -right-0.5 top-1/2 size-20 -translate-y-1/2 opacity-40 sm:right-[38px] sm:size-28" />
     </div>
   );
 }
@@ -45,15 +45,15 @@ export function ResultsPanel({ result, amount, frequency, startYear }: { result:
     <section className="result-panel" aria-labelledby="result-title">
       <Ornament />
       <div className="relative z-10">
-        <p id="result-title" className="text-[clamp(10px,3vw,13px)] uppercase tracking-[0.28em] text-result-muted">
-          Saved {usd.format(amount)} {frequency} since {startYear}
+        <p id="result-title" className="mb-4 text-[clamp(12px,3.4vw,15px)] tracking-[0.02em] text-result-muted">
+          If you had saved {usd.format(amount)} {frequency} from {startYear}, you'd have:
         </p>
         {/* One breakpoint at 10 digits (≥ $1bn): shrink the hero and everything keyed to it. */}
-        <div className={billion ? "text-[clamp(2.1rem,10.5vw,3.4rem)]" : "text-[clamp(2.6rem,13vw,4.5rem)]"}>
+        <div className={`flex h-[clamp(5rem,26vw,8.5rem)] flex-col justify-end overflow-hidden ${billion ? "text-[clamp(2.4rem,12vw,4rem)]" : "text-[clamp(3.1rem,16vw,5.4rem)]"}`}>
           <p className="whitespace-nowrap font-numeral leading-none [text-shadow:0_2px_14px_oklch(0.25_0.06_155/40%)]">
             <span className="text-[0.55em]">$</span>{value}
           </p>
-          <p className="mt-2 text-[0.35em] font-normal tabular-nums leading-tight text-result-mint">
+          <p className="mt-2 whitespace-nowrap truncate text-[0.35em] font-normal tabular-nums leading-tight text-result-mint">
             {btc.format(result.bitcoin)} BTC
             <span className="ml-2 align-middle text-[0.6em] font-normal text-result-muted">₿{compact.format(result.satoshis)}</span>
           </p>
