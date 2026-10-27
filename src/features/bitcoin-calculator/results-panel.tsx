@@ -45,7 +45,7 @@ export function ResultsPanel({ result, amount, frequency, startYear }: { result:
     <section className="result-panel" aria-labelledby="result-title">
       <Ornament />
       <div className="relative z-10">
-        <p id="result-title" className="mb-4 text-[clamp(12px,3.4vw,15px)] tracking-[0.02em] text-result-muted">
+        <p id="result-title" className="mb-4 line-clamp-2 h-[2.8em] leading-[1.4] text-[clamp(12px,3.4vw,15px)] tracking-[0.02em] text-result-muted">
           If you had saved {usd.format(amount)} {frequency} from {startYear}, you'd have:
         </p>
         {/* One breakpoint at 10 digits (≥ $1bn): shrink the hero and everything keyed to it. */}
