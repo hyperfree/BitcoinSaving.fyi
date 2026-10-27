@@ -50,7 +50,7 @@ export function ResultsPanel({ result, amount, frequency, startYear }: { result:
         <p className="mt-2 whitespace-nowrap font-numeral text-[clamp(2.6rem,13vw,4.5rem)] leading-none [text-shadow:0_2px_14px_oklch(0.25_0.06_155/40%)]">
           <span className="text-[0.55em]">$</span>{value}
         </p>
-        <p className="mt-2 text-[clamp(1.6rem,8vw,2.4rem)] font-semibold tabular-nums leading-tight text-result-mint">
+        <p className="mt-2 text-[clamp(1.05rem,4.5vw,1.35rem)] font-normal tabular-nums leading-tight text-result-mint">
           {btc.format(result.bitcoin)} BTC
           <span className="ml-2 align-middle text-[11px] font-normal text-result-muted">{compact.format(result.satoshis)} sats</span>
         </p>
