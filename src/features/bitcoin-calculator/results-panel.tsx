@@ -39,6 +39,7 @@ function Ornament() {
 export function ResultsPanel({ result, amount, frequency, startYear }: { result: CalculationResult; amount: number; frequency: Frequency; startYear: number }) {
   const positive = result.netProfit >= 0;
   const value = usd.format(result.currentValue).replace("$", "");
+  const billion = value.replace(/,/g, "").length >= 10;
   const roi = `${positive ? "+" : ""}${result.roi.toLocaleString("en-US", { maximumFractionDigits: 0 })}%`;
   return (
     <section className="result-panel" aria-labelledby="result-title">
