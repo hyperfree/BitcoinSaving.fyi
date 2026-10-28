@@ -70,8 +70,8 @@ export function AmountSelector({ value, custom, onChange, aside }: AmountSelecto
           }}
           className={cn("amount-card amount-custom", custom && "amount-card-selected")}
         >
-          <span className="text-sm font-normal text-muted-foreground/70">Custom amount</span>
-          <label className="mt-2 flex h-14 w-full max-w-[9rem] items-center justify-center border-b border-border/60 px-2 text-2xl font-normal text-foreground">
+          <span className="shrink-0 text-[13px] font-normal text-muted-foreground/70">Custom</span>
+          <label className="flex h-9 min-w-0 flex-1 items-center justify-end px-1 text-lg font-normal text-foreground">
             <span aria-hidden="true" className="text-muted-foreground">$</span>
             <Input
               ref={inputRef}
@@ -83,7 +83,7 @@ export function AmountSelector({ value, custom, onChange, aside }: AmountSelecto
               value={custom ? value : ""}
               onClick={(event) => event.stopPropagation()}
               onChange={(event) => onChange(Math.min(9999, Math.max(1, Number(event.target.value) || 1)), true)}
-              className="h-12 min-w-0 flex-1 border-0 bg-transparent px-1 text-left text-2xl font-normal shadow-none focus-visible:ring-0 md:text-2xl"
+              className="h-9 w-16 min-w-0 border-0 bg-transparent px-1 text-left text-lg font-normal shadow-none focus-visible:ring-0 md:text-lg"
             />
           </label>
         </button>

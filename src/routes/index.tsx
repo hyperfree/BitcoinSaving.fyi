@@ -89,10 +89,16 @@ function Index() {
     return params.toString();
   }, [amount, frequency, startYear, selected]);
 
-  // Keep the address bar in sync so the page can be bookmarked or shared.
+  // Keep the address bar in sync (debounced, scroll preserved) so the page can be shared.
   useEffect(() => {
     if (!hydratedFromUrl.current) return;
-    window.history.replaceState(window.history.state, "", `${window.location.pathname}?${searchString}`);
+    const t = setTimeout(() => {
+      const x = window.scrollX;
+      const y = window.scrollY;
+      window.history.replaceState(window.history.state, "", `${window.location.pathname}?${searchString}`);
+      window.scrollTo(x, y);
+    }, 400);
+    return () => clearTimeout(t);
   }, [searchString]);
 
   const shareUrl = `https://bitcoinsaving.fyi/?${searchString}`;
