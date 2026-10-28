@@ -16,7 +16,7 @@ function Stat({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="min-w-0">
       <dt className="truncate text-[10px] font-medium uppercase tracking-[0.18em] text-result-muted">{label}</dt>
-      <dd className="mt-1 flex flex-nowrap items-center gap-1.5 font-numeral text-[clamp(20px,5.8vw,27px)] tabular-nums text-result-foreground">{children}</dd>
+      <dd className="mt-1 flex flex-nowrap items-center gap-1.5 font-numeral text-[clamp(24px,7vw,32px)] tabular-nums text-result-foreground">{children}</dd>
     </div>
   );
 }
@@ -59,18 +59,18 @@ export function ResultsPanel({ result, amount, frequency, startYear }: { result:
           </p>
         </div>
 
-        <dl className="mt-6 grid grid-cols-2 gap-3 border-t border-result-foreground/15 pt-4 sm:mt-8 sm:gap-6">
-          <Stat label="Profit">
+        <dl className="mt-6 grid grid-cols-2 gap-x-3 gap-y-4 sm:mt-8 sm:gap-6">
+          <Stat label="Net profit">
             {positive ? <ArrowUpRight className="size-4 text-gain" /> : <ArrowDownRight className="size-4 text-loss" />}
             <span className="truncate">{usd.format(result.netProfit)}</span>
           </Stat>
-          <Stat label="Gain">
+          <Stat label="ROI (Return)">
             <span className="truncate">{roi}</span>
           </Stat>
-          <Stat label="Invested">
+          <Stat label="Total invested">
             <span className="truncate">{usd.format(result.totalInvested)}</span>
           </Stat>
-          <Stat label="Avg cost">
+          <Stat label="Average cost">
             <span className="truncate">{usd.format(result.averageCost)}</span>
           </Stat>
         </dl>

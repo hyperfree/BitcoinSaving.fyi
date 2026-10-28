@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import fiveDollarNote from "@/assets/banknotes/five-dollar-note.webp";
@@ -15,6 +15,7 @@ type AmountSelectorProps = {
   value: number;
   custom: boolean;
   onChange: (amount: number, custom: boolean) => void;
+  aside?: ReactNode;
 };
 
 function haptic() {
@@ -30,7 +31,7 @@ function Bill({ amount, image }: { amount: number; image: string }) {
   );
 }
 
-export function AmountSelector({ value, custom, onChange }: AmountSelectorProps) {
+export function AmountSelector({ value, custom, onChange, aside }: AmountSelectorProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export function AmountSelector({ value, custom, onChange }: AmountSelectorProps)
   return (
     <fieldset>
       <legend className="sr-only">Regular amount</legend>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
+      <div className="grid grid-cols-3 gap-3 sm:gap-5">
         {PRESETS.map(({ amount, image }) => {
           const selected = !custom && value === amount;
           return (
@@ -58,6 +59,8 @@ export function AmountSelector({ value, custom, onChange }: AmountSelectorProps)
             </button>
           );
         })}
+      </div>
+      <div className="mt-3 grid grid-cols-2 items-center gap-3 sm:mt-5 sm:gap-5">
         <button
           type="button"
           aria-pressed={custom}
@@ -84,6 +87,7 @@ export function AmountSelector({ value, custom, onChange }: AmountSelectorProps)
             />
           </label>
         </button>
+        <div className="min-w-0">{aside}</div>
       </div>
     </fieldset>
   );

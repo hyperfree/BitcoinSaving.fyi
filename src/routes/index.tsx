@@ -15,7 +15,7 @@ import { FrequencyWheel } from "@/features/bitcoin-calculator/frequency-wheel";
 import { GrowthChart, type CompareSeries, type GrowthPoint } from "@/features/bitcoin-calculator/growth-chart";
 import { ResultsPanel } from "@/features/bitcoin-calculator/results-panel";
 import { useBitcoinPrices } from "@/features/bitcoin-calculator/use-bitcoin-prices";
-import { YearWheel } from "@/features/bitcoin-calculator/year-wheel";
+import { YearBar } from "@/features/bitcoin-calculator/year-bar";
 
 const frequencies: Array<{ value: Frequency; label: string }> = [
   { value: "hourly", label: "Hourly" },
@@ -158,12 +158,9 @@ function Index() {
         </header>
 
         <div className="mb-6 max-w-2xl sm:mb-8">
-          <h1 className="whitespace-nowrap text-[clamp(1.4rem,6.6vw,3.25rem)] font-semibold leading-[1.02] tracking-tight text-foreground">
-            Simulate Your Bitcoin Stack
+          <h1 className="text-xl font-medium leading-snug tracking-tight text-foreground sm:text-2xl">
+            Pick amount, frequency and starting year to simulate your Bitcoin savings.
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-            Pick amount, frequency and starting year to simulate the value of your Bitcoin savings.
-          </p>
         </div>
 
         <section className="control-surface" aria-label="Investment settings">
@@ -174,15 +171,11 @@ function Index() {
               setAmount(nextAmount);
               setCustom(isCustom);
             }}
+            aside={<FrequencyWheel value={frequency} onChange={setFrequency} />}
           />
 
-          <div className="mt-[26px] grid grid-cols-1 items-start gap-[26px] sm:grid-cols-2 sm:gap-10">
-            <div className="min-w-0">
-              <FrequencyWheel value={frequency} onChange={setFrequency} />
-            </div>
-            <div className="flex min-w-0 flex-col items-stretch">
-              <YearWheel value={startYear} onChange={setStartYear} />
-            </div>
+          <div className="mt-5">
+            <YearBar value={startYear} onChange={setStartYear} />
           </div>
         </section>
 
