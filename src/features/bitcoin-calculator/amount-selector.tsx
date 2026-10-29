@@ -88,6 +88,9 @@ export function AmountSelector({ value, custom, onChange, aside }: AmountSelecto
               onClick={(event) => event.stopPropagation()}
               onChange={(event) => {
                 const text = event.target.value.replace(/[^0-9]/g, "").slice(0, 3);
+                // Controlled number inputs skip the DOM write when React's cached value
+                // is unchanged, so extra digits would stay visible. Force the node back.
+                if (event.target.value !== text) event.target.value = text;
                 setDraft(text);
                 const n = Math.min(999, Math.max(1, Number(text) || 0));
                 if (n) onChange(n, true);
