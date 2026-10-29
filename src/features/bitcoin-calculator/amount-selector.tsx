@@ -33,6 +33,7 @@ function Bill({ amount, image }: { amount: number; image: string }) {
 
 export function AmountSelector({ value, custom, onChange, aside }: AmountSelectorProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [draft, setDraft] = useState("");
 
   useEffect(() => {
     if (custom) inputRef.current?.focus();
