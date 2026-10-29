@@ -81,15 +81,15 @@ export function AmountSelector({ value, custom, onChange, aside }: AmountSelecto
               type="number"
               inputMode="numeric"
               min="1"
-              max="9999"
+              max="999"
               step="1"
               placeholder="Custom"
               value={custom ? draft : ""}
               onClick={(event) => event.stopPropagation()}
               onChange={(event) => {
-                const text = event.target.value.replace(/[^0-9]/g, "").slice(0, 4);
+                const text = event.target.value.replace(/[^0-9]/g, "").slice(0, 3);
                 setDraft(text);
-                const n = Math.min(9999, Math.max(1, Number(text) || 0));
+                const n = Math.min(999, Math.max(1, Number(text) || 0));
                 if (n) onChange(n, true);
               }}
               className="h-9 min-w-0 flex-1 border-0 bg-transparent px-1 text-left text-lg font-normal shadow-none placeholder:text-[13px] placeholder:font-normal placeholder:text-muted-foreground/70 focus-visible:ring-0 md:text-lg"

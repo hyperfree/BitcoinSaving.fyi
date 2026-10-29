@@ -58,7 +58,7 @@ function Index() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const a = Number(params.get("amount"));
-    if (Number.isFinite(a) && a > 0 && a <= 9999) {
+    if (Number.isFinite(a) && a > 0 && a <= 999) {
       setAmount(Math.round(a));
       setCustom(![5, 20, 50].includes(Math.round(a)));
     }
