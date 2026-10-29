@@ -130,11 +130,11 @@ export function YearBar({ value, onChange }: YearBarProps) {
       onPointerCancel={() => { dragging.current = false; }}
     >
       <div ref={layer} className="year-bar-gradient" aria-hidden="true" />
+      <span className="year-bar-caption" aria-hidden="true">Starting year</span>
       <div className="year-bar-strip" aria-hidden="true">
         {neighbors.map((y, i) => (
           <span key={i} className={i === 1 ? "year-bar-year year-bar-year-active" : "year-bar-year"}>
             {y >= FIRST && y <= LAST ? y : ""}
-            {i === 1 && <span className="year-bar-caption">Starting year</span>}
           </span>
         ))}
       </div>

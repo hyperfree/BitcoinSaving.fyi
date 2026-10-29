@@ -495,6 +495,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 100%;
+  padding-top: 14px;
   pointer-events: none;
   mask-image: linear-gradient(90deg, transparent, black 25%, black 75%, transparent);
 }
@@ -513,7 +515,9 @@
 @utility year-bar-caption {
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 4px);
+  top: calc(50% - 32px - 19px + 7px);
+  z-index: 1;
+  pointer-events: none;
   transform: translateX(-50%);
   white-space: nowrap;
   font-family: "Inter", sans-serif;
