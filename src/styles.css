@@ -312,6 +312,11 @@
   gap: 0.5rem;
   padding: 0 0.75rem;
   border-radius: 14px;
+
+  /* Hide the native number spinners so the Custom hint fits the narrow tile. */
+  input[type="number"] { appearance: textfield; }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { appearance: none; margin: 0; }
 }
 @utility amount-label {
   position: absolute;
