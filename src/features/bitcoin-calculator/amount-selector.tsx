@@ -61,34 +61,42 @@ export function AmountSelector({ value, custom, onChange, aside }: AmountSelecto
           );
         })}
       </div>
-      <div className="mt-3 grid grid-cols-2 items-center gap-3 sm:mt-5 sm:gap-5">
+      <div className="mt-3 grid grid-cols-3 items-center gap-3 sm:mt-5 sm:gap-5">
         <button
           type="button"
           aria-pressed={custom}
           onClick={() => {
             haptic();
-            onChange(custom ? value : 100, true);
+            setDraft("");
+            if (!custom) onChange(value, true);
+            else inputRef.current?.focus();
           }}
           className={cn("amount-card amount-custom", custom && "amount-card-selected")}
         >
-          <span className="shrink-0 text-[13px] font-normal text-muted-foreground/70">Custom</span>
-          <label className="flex h-9 min-w-0 flex-1 items-center justify-end px-1 text-lg font-normal text-foreground">
-            <span aria-hidden="true" className="text-muted-foreground">$</span>
+          <label className="flex h-9 min-w-0 flex-1 items-center px-1 text-lg font-normal text-foreground">
+            <span aria-hidden="true" className="shrink-0 text-muted-foreground">$</span>
             <Input
               ref={inputRef}
               aria-label="Custom investment amount"
               type="number"
+              inputMode="numeric"
               min="1"
               max="9999"
               step="1"
-              value={custom ? value : ""}
+              placeholder="Custom"
+              value={custom ? draft : ""}
               onClick={(event) => event.stopPropagation()}
-              onChange={(event) => onChange(Math.min(9999, Math.max(1, Number(event.target.value) || 1)), true)}
-              className="h-9 w-16 min-w-0 border-0 bg-transparent px-1 text-left text-lg font-normal shadow-none focus-visible:ring-0 md:text-lg"
+              onChange={(event) => {
+                const text = event.target.value.replace(/[^0-9]/g, "").slice(0, 4);
+                setDraft(text);
+                const n = Math.min(9999, Math.max(1, Number(text) || 0));
+                if (n) onChange(n, true);
+              }}
+              className="h-9 min-w-0 flex-1 border-0 bg-transparent px-1 text-left text-lg font-normal shadow-none placeholder:text-[13px] placeholder:font-normal placeholder:text-muted-foreground/70 focus-visible:ring-0 md:text-lg"
             />
           </label>
         </button>
-        <div className="min-w-0">{aside}</div>
+        <div className="col-span-2 min-w-0">{aside}</div>
       </div>
     </fieldset>
   );
