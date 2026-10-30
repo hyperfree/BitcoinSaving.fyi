@@ -15,6 +15,8 @@ import appCss from "../styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
 import { appearanceScript } from "@/components/theme-switch";
 import { NavDock } from "@/components/nav-dock";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -127,9 +129,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      {isEmbed ? null : <SiteHeader />}
       <div className={isEmbed ? undefined : "pb-28"}>
         <Outlet />
       </div>
+      {isEmbed ? null : <SiteFooter />}
       {isEmbed ? null : <NavDock />}
       <Toaster position="top-center" richColors />
     </QueryClientProvider>
