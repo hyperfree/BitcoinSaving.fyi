@@ -42,7 +42,7 @@ function LinkColumn({ title, links }: { title: string; links: Array<{ label: str
 
 export function SiteFooter() {
   return (
-    <footer className="mt-[52px] bg-[#07182B] font-body text-[14.5px] leading-relaxed text-[#C7D2DF]">
+    <footer className="mt-[52px] bg-[#07182B] font-sans text-[14.5px] leading-relaxed text-[#C7D2DF]">
       <div className="mx-auto w-full max-w-[1120px] px-[22px] py-12">
         <div className="grid gap-10 min-[780px]:grid-cols-2">
           <div>

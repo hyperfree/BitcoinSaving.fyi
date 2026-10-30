@@ -60,7 +60,7 @@ export function SiteHeader() {
   );
 
   return (
-    <header className="sticky top-0 z-50 bg-[#07182B] font-body">
+    <header className="sticky top-0 z-50 bg-[#07182B] font-sans">
       <div className="flex h-[58px] items-center gap-4 px-[22px]">
         <a href="https://bitcoinsaving.fyi/" className="flex shrink-0 items-center gap-2.5">
           <span className="flex size-[30px] items-center justify-center rounded-full bg-[#F7931A] text-[17px] font-bold text-white">
