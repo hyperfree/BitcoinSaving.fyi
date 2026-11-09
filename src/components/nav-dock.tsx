@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { PiggyBank, ChartLine, Lightbulb, Newspaper, UserRound } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { WaitlistDialog } from "@/components/waitlist-dialog";
 
 const items = [
   { id: "dca", label: "DCA", icon: PiggyBank, href: "/" },
-  { id: "charts", label: "Charts", icon: ChartLine, href: "https://bitcoincounterflow.com/signup?ref=7206" },
-  { id: "learn", label: "Learn", icon: Lightbulb, href: "https://dca-signals.com" },
-  { id: "news", label: "News", icon: Newspaper, href: "https://lightning.news" },
-  { id: "profile", label: "Profile", icon: UserRound, href: "#" },
+  { id: "charts", label: "Charts", icon: ChartLine, href: "https://bitcoinsaving.fyi/download/" },
+  { id: "learn", label: "Learn", icon: Lightbulb, href: "https://bitcoinsaving.fyi/download/" },
+  { id: "news", label: "News", icon: Newspaper, href: "https://bitcoinsaving.fyi/download/" },
+  { id: "profile", label: "Profile", icon: UserRound, href: "https://bitcoinsaving.fyi/download/" },
 ] as const;
 
 export function NavDock() {
@@ -40,21 +39,6 @@ export function NavDock() {
               </span>
             </>
           );
-
-          if (id === "profile") {
-            return (
-              <WaitlistDialog key={id}>
-                <button
-                  type="button"
-                  onClick={() => setActive(id)}
-                  aria-current={isActive ? "page" : undefined}
-                  className={itemClass}
-                >
-                  {content}
-                </button>
-              </WaitlistDialog>
-            );
-          }
 
           return (
             <a
