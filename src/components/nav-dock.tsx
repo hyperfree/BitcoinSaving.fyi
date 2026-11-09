@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { PiggyBank, ChartLine, Lightbulb, Newspaper, UserRound } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { WaitlistDialog } from "@/components/waitlist-dialog";
 
 const items = [
   { id: "dca", label: "DCA", icon: PiggyBank, href: "/" },
@@ -40,21 +39,6 @@ export function NavDock() {
               </span>
             </>
           );
-
-          if (id === "profile") {
-            return (
-              <WaitlistDialog key={id}>
-                <button
-                  type="button"
-                  onClick={() => setActive(id)}
-                  aria-current={isActive ? "page" : undefined}
-                  className={itemClass}
-                >
-                  {content}
-                </button>
-              </WaitlistDialog>
-            );
-          }
 
           return (
             <a
